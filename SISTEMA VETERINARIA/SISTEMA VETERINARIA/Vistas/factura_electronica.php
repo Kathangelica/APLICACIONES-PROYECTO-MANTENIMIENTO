@@ -222,12 +222,9 @@ if ($result) {
 <body>
     <?php include '../Layaout/Navbar.php'; ?>
 
-    <main class="container">
-        <header class="page-header">
-            <h1><i class="fas fa-file-invoice-dollar"></i> Facturación Electrónica</h1>
-            <p>Sistema de facturación para veterinaria</p>
-        </header>
-
+    <div class="container">
+        <h2>Facturación Electrónica</h2>
+        <p>Complete los datos del cliente y agregue productos a la factura.</p>
         <form action="../Modelos/procesar_factura.php" method="POST" onsubmit="return validarYEnviar()">
             
             <!-- Datos del Cliente -->
@@ -333,16 +330,8 @@ if ($result) {
                     <div class="totales-container">
                         <div class="totales">
                             <div class="total-line">
-                                <span>Subtotal:</span>
-                                <span id="subtotal">$0.00</span>
-                            </div>
-                            <div class="total-line">
-                                <span>IVA (15%):</span>
-                                <span id="iva">$0.00</span>
-                            </div>
-                            <div class="total-line total-final">
                                 <span>Total:</span>
-                                <span id="total">$0.00</span>
+                                <span id="subtotal">$0.00</span>
                             </div>
                         </div>
                     </div>
@@ -351,7 +340,6 @@ if ($result) {
 
             <!-- Campos ocultos -->
             <input type="hidden" name="productos" id="productos_json" />
-
             <!-- Botón de envío -->
             <div class="submit-container">
                 <button type="submit" class="btn-generar">
@@ -360,7 +348,7 @@ if ($result) {
                 </button>
             </div>
         </form>
-    </main>
+    </div>
 
     <?php include '../Layaout/Footer.php'; ?>
 </body>

@@ -90,9 +90,7 @@ foreach ($productos as $p) {
     ];
 }
 
-// Calcular IVA (15%) y total
-$iva = $subtotal * 0.15;
-$total_con_iva = $subtotal + $iva;
+// Calcular total (sin IVA
 
 // Iniciar transacción
 $conexion->begin_transaction();
@@ -100,7 +98,7 @@ $conexion->begin_transaction();
 try {
     // Insertar factura
     $stmt_factura = $conexion->prepare("INSERT INTO factura (codigo_factura, nombre_cliente, email, cedula, direccion, subtotal, iva, total, fecha_creacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())");
-    $stmt_factura->bind_param("sssssddd", $codigo_factura, $nombre_cliente, $email_cliente, $cedula_cliente, $direccion_cliente, $subtotal, $iva, $total_con_iva);
+    $stmt_factura->bind_param("sssssddd", $codigo_factura, $nombre_cliente, $email_cliente, $cedula_cliente, $direccion_cliente, $subtotal, $iva, $total);
     
     if (!$stmt_factura->execute()) {
         throw new Exception("Error al insertar factura: " . $stmt_factura->error);
@@ -135,7 +133,7 @@ try {
     
     // Redirigir a página de éxito
     echo "<script>
-        alert('✅ Factura generada correctamente.\\n\\nCódigo: $codigo_factura\\nTotal: $" . number_format($total_con_iva, 2) . "');
+        alert('✅ Factura generada correctamente.\\n\\nCódigo: $codigo_factura\\nTotal: $" . number_format($total, 2) . "');
         window.location.href='../Vistas/comprobante.php?id=$id_factura';
     </script>";
     

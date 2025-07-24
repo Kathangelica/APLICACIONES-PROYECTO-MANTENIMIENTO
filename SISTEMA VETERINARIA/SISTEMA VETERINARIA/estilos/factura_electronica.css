@@ -1,10 +1,11 @@
 /* Variables CSS */
+/* Variables CSS */
 :root {
-    --primary-color: #4f46e5;
+    --primary-color: #564ef0;
     --primary-hover: #3730a3;
     --success-color: #10b981;
     --warning-color: #f59e0b;
-    --danger-color: #ef4444;
+    --danger-color: hsl(0, 20%, 86%);
     --info-color: #3b82f6;
     --light-bg: #f8fafc;
     --white: #ffffff;

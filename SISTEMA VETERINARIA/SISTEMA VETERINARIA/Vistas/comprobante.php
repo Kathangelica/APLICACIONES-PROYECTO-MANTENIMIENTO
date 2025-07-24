@@ -37,110 +37,12 @@ while ($row = $result_detalles->fetch_assoc()) {
 $stmt_detalle->close();
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8" />
-    <title>Comprobante de Factura <?= htmlspecialchars($factura['codigo_factura']) ?></title>
-    <style>
-        /* Tamaño compacto para comprobante */
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 480px;
-            margin: auto;
-            padding: 15px;
-            background: white;
-            color: #000;
-        }
-
-        h1,
-        h2 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .datos-cliente,
-        .productos,
-        .totales {
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        th,
-        td {
-            border: 1px solid #333;
-            padding: 6px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f0f0f0;
-        }
-
-        .totales p {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 5px 0;
-            text-align: right;
-        }
-
-        /* Botón imprimir fijo arriba */
-        .btn-imprimir {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .btn-regresar {
-            position: fixed;
-            top: 50px;
-            right: 10px;
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .btn-imprimir:hover {
-            background: #2980b9;
-        }
-
-        @media print {
-            .btn-imprimir {
-                display: none;
-            }
-
-            body {
-                max-width: 100%;
-                margin: 0;
-                padding: 0;
-            }
-        }
-    </style>
-</head>
-
+<?php include '../Layaout/Navbar.php'; ?>
 <body>
-
-    <button class="btn-imprimir" onclick="window.print()">🖨️ Imprimir</button>
-    <button class="btn-regresar" onclick="window.history.back()">⟵ Regresar</button>
-
-    <h1>Veterinaria Patitas</h1>
-    <h2>Comprobante de Factura</h2>
+    <div class="container">
+        <h2>Comprobante de Factura</h2>
+        <p>Detalles de la factura generada.</p>
+        <!-- Aquí va la tabla de productos y totales, manteniendo el diseño simple -->
 
     <div class="datos-cliente">
         <p><strong>Código:</strong> <?= htmlspecialchars($factura['codigo_factura']) ?></p>
@@ -184,10 +86,8 @@ $stmt_detalle->close();
         $total = $subtotal + $iva;
         ?>
         <p>Subtotal: $<?= number_format($subtotal, 2) ?></p>
-        <p>IVA (12%): $<?= number_format($iva, 2) ?></p>
         <p>Total: $<?= number_format($total, 2) ?></p>
     </div>
-
+    </div>
 </body>
-
-</html>
+<?php include '../Layaout/Footer.php'; ?>
